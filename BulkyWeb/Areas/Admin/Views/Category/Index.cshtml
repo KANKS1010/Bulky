@@ -1,0 +1,48 @@
+﻿@model List<Category>
+
+<hr/>
+
+<div class="container">
+        <div class="row pt-4 pb-2">
+            <div class="col-6">
+                <h2 class="text-primary">
+                    Category List
+                </h2>
+            </div>
+        </div>
+    <div class="col-6 ">
+        <a asp-controller="Category" asp-action="Create" style="background-color: #ebf4ff; color: #37a4f8;" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Create New Category
+        </a>
+    </div>
+    </div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Category Name</th>
+            <th scope="col">Display Order</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var obj in Model.OrderBy(u=>u.DisplayOrder))
+        {
+        <tr>
+            <td>@obj.Name</td>
+                <td>
+                    @obj.DisplayOrder
+                </td>
+                <td>
+                    <div>
+                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary-2 mx-2 " 
+                          style="background-color: #ebf4ff;">
+                            <i class="bi bi-pen-fill"></i> Edit
+                        </a>
+                        <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-primary-2 mx-2 " style="background-color: #e34f4f;color: white;">
+                            <i class="bi bi-trash-fill"></i> Delete
+                        </a>
+                    </div>
+                </td>
+        </tr>
+        }
+    </tbody>
+</table>
